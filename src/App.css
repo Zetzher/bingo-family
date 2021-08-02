@@ -139,12 +139,55 @@ breakpoint {
   display: inline-block;
 }
 
+.base-background {
+  width: 100vw;
+  height: 100vh;
+  -webkit-animation: color-change-5x 8s linear infinite alternate both;
+  animation: color-change-5x 8s linear infinite alternate both;
+}
+
+.intro-animation {
+  -webkit-animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: slide-in-left 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+          position: absolute;
+          left: 45%;
+          top: 65%;
+          z-index: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20%
+}
+
+.finish-intro {
+  -webkit-animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+	        animation: slide-out-right 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+          position: absolute;
+          left: 45%;
+          top: 65%;
+          z-index: 1;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 20%
+}
+
+.title-animation {
+  font-size: 40px;
+  font-family: 'STIX Two Text', serif;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
 .tablero-numeros {
   width: 100vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   height: 60vh;
+  border-width: 1px;
+  border-color: black;
+  border-style: solid;
 }
 
 .bola-bingo {
@@ -152,7 +195,8 @@ breakpoint {
   margin-top: 20px;
   width: 70px;
   height: 70px;
-  background: radial-gradient(at top left, red 20%, #040);
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
   -ms-border-radius: 150px;
   -moz-border-radius: 150px;
   -webkit-border-radius: 150px;
@@ -166,6 +210,27 @@ breakpoint {
   box-shadow: 2px 14px 28px -8px rgba(0,0,0,0.75);
   -webkit-animation: bounce-in-right 2s both;
 	        animation: bounce-in-right 2s both;
+}
+
+.bola-bingo-last {
+  width: 70px;
+  height: 70px;
+  -ms-border-radius: 150px;
+  -moz-border-radius: 150px;
+  -webkit-border-radius: 150px;
+  -o-border-radius: 150px;
+  border-radius: 150px;
+  -webkit-box-shadow: 2px 14px 28px -8px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 14px 28px -8px rgba(0,0,0,0.75);
+  box-shadow: 2px 14px 28px -8px rgba(0,0,0,0.75);
+  -webkit-animation: bounce-in-right 2s both;
+	animation: bounce-in-right 2s both;
+  -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(at top left, red 20%, #040);
 }
 
 .circle-bola-bingo {
@@ -194,8 +259,7 @@ font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  -webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
-	        animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+ 
 }
 
 .bingo-final {
@@ -219,7 +283,104 @@ font-size: 20px;
 
 .title-play-again {
   font-family: 'STIX Two Text', serif;
-font-size: 20px;
+  font-size: 20px;
+}
+
+.last-value {
+  font-family: 'STIX Two Text', serif;
+  font-size: 20px;
+  color: white;
+  position: relative;
+  right: 50px;
+  bottom: 40px;
+  font-weight: bold;
+  letter-spacing: 10px;
+}
+
+@-webkit-keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-right {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: translateX(1000px);
+            transform: translateX(1000px);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-1000px);
+            transform: translateX(-1000px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+
+@-webkit-keyframes color-change-5x {
+  0% {
+    background: #19dcea;
+  }
+  25% {
+    background: #b22cff;
+  }
+  50% {
+    background: #ea2222;
+  }
+  75% {
+    background: #f5be10;
+  }
+  100% {
+    background: #3bd80d;
+  }
+}
+@keyframes color-change-5x {
+  0% {
+    background: #19dcea;
+  }
+  25% {
+    background: #b22cff;
+  }
+  50% {
+    background: #ea2222;
+  }
+  75% {
+    background: #f5be10;
+  }
+  100% {
+    background: #3bd80d;
+  }
 }
 
 @-webkit-keyframes swirl-in-bck {
