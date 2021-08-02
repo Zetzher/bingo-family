@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import logo from './logo.svg';
+import ReactAudioPlayer from 'react-audio-player';
 import Bingo from './bingo-logo.jpeg'
+import BolasBingo from './sonido_bolas_bingo.mp3';
 import './App.css';
 
 function App() {
@@ -11,50 +12,57 @@ function App() {
   const [numberChosen, setNumberChosen] = useState();
   const [beginning, setBeginning] = useState(false);
   const [styleChanged, setStyleChanged] = useState("intro-animation")
+  const [sound, setSound] = useState(false);
 
 
   const chooseNumber = (arrNumbers) => {
-    const randomNumber = arrNumbers[Math.floor(Math.random() * arrNumbers.length - 1)];
-    beginning === false && setBeginning(true);
-    const copyArr = [...backup];
+    setSound(true);
+    setTimeout(function () { setSound(false); }, 4000);
 
-    copyArr.map((data, key) => data === randomNumber && copyArr.splice(key, 1));
+    setTimeout(function () {
+      const randomNumber = arrNumbers[Math.floor(Math.random() * arrNumbers.length - 1)];
+      beginning === false && setBeginning(true);
+      const copyArr = [...backup];
 
-    setNumberChosen(randomNumber);
-    if (randomNumber === undefined) {
-      chooseNumber(arrNumbers);
-      return;
-    }
+      copyArr.map((data, key) => data === randomNumber && copyArr.splice(key, 1));
 
-    const copyNumbersArr = [...numbers, randomNumber];
+      setNumberChosen(randomNumber);
+      if (randomNumber === undefined) {
+        chooseNumber(arrNumbers);
+        return;
+      }
 
-    const lastFourNumbers = [...lastNumbers];
+      const copyNumbersArr = [...numbers, randomNumber];
 
-    if (lastFourNumbers.length === 4) {
-      lastFourNumbers.shift();
-      lastFourNumbers.push(randomNumber);
-    } else {
-      lastFourNumbers.push(randomNumber);
-    }
+      const lastFourNumbers = [...lastNumbers];
 
-    setLastNumbers(lastFourNumbers);
+      if (lastFourNumbers.length === 4) {
+        lastFourNumbers.shift();
+        lastFourNumbers.push(randomNumber);
+      } else {
+        lastFourNumbers.push(randomNumber);
+      }
+
+      setLastNumbers(lastFourNumbers);
 
 
+      setBackup(copyArr);
+      setNumbers(copyNumbersArr);
 
-    setBackup(copyArr);
-    setNumbers(copyNumbersArr);
+      if (copyNumbersArr.length % 10 === 0) {
+        copyNumbersArr.sort((a, b) => {
+          if (a > b) {
+            return 1;
+          }
+          if (a < b) {
+            return -1;
+          }
+          return 0;
+        })
+      };
+    }, 3500)
 
-    if (copyNumbersArr.length % 10 === 0) {
-      copyNumbersArr.sort((a, b) => {
-        if (a > b) {
-          return 1;
-        }
-        if (a < b) {
-          return -1;
-        }
-        return 0;
-      })
-    };
+
   }
 
   const introAnimation = () => {
@@ -109,7 +117,7 @@ function App() {
             <div style={{ position: 'absolute', right: 10, marginTop: 50 }}>
               <h4 className="last-value">Últimas cuatro bolas</h4>
             </div>
-            <div style={{ width: '400px', height: '150px', backgroundColor: 'white', borderRadius: '20%', position: 'relative', right: '50px', top:'50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ width: '400px', height: '150px', backgroundColor: 'white', borderRadius: '20%', position: 'relative', right: '50px', top: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 
               {lastNumbers.map(data => {
@@ -131,6 +139,11 @@ function App() {
           </section>
         </>
       }
+      {sound && <ReactAudioPlayer
+        src={BolasBingo}
+        autoPlay
+      />}
+      {console.log(sound)}
     </section>
   );
 }
