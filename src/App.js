@@ -105,11 +105,11 @@ function App() {
                 </div>
               </div>
             </div>
-            <button style={{ width: "100px", height: "60px", borderRadius: "20%", position: 'absolute', bottom: '20vh', left: '50vw' }} onClick={() => chooseNumber(backup)}>Sacar bola de bingo</button>
-            <div style={{ position: 'absolute', right: 90 }}>
-              <h4 className="last-value">Últimas bolas</h4>
+            <button style={{ borderWidth: '3px', borderColor: '#DEDEDE', backgroundColor: '#f5b957', width: "100px", height: "80px", borderRadius: "100%", position: 'absolute', bottom: '20vh', left: '50vw' }} onClick={() => chooseNumber(backup)}><h3 className="title-button">{beginning ? 'Sacar bola de bingo' : 'Empezar'}</h3></button>
+            <div style={{ position: 'absolute', right: 10, marginTop: 50 }}>
+              <h4 className="last-value">Últimas cuatro bolas</h4>
             </div>
-            <div style={{ width: '400px', height: '150px', backgroundColor: 'white', borderRadius: '20%', position: 'relative', right: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ width: '400px', height: '150px', backgroundColor: 'white', borderRadius: '20%', position: 'relative', right: '50px', top:'50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
 
               {lastNumbers.map(data => {

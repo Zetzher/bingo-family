@@ -179,6 +179,13 @@ breakpoint {
   letter-spacing: 10px;
 }
 
+.title-button {
+  font-size: 13px;
+  font-weight: 600;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .tablero-numeros {
   width: 100vw;
   display: flex;
